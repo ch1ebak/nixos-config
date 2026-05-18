@@ -76,6 +76,15 @@
 		gvfs.enable = true;
 		printing.enable = true;
 		libinput.enable = true;
+		udev = {
+			packages = with pkgs; [
+				vial
+			];
+			extraRules =
+			''
+			ENV{ID_VENDOR_ID}=="046d", ENV{ID_MODEL_ID}=="0825", ENV{PULSE_IGNORE}="1"
+			'';
+		};
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
