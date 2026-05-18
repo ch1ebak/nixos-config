@@ -35,12 +35,20 @@
 			systemd-boot.enable = true;
 			efi.canTouchEfiVariables = true;
 		};
+		kernelParams = [
+			"acpi_backlight=native"
+		];
 	};
 
-  # Nvidia
-  hardware.graphics.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
-  hardware.nvidia.open = true;
+  # Hardware
+	hardware = {
+		acpilight.enable = true;
+		graphics.enable = true;
+		nvidia = {
+			open = true;
+			modesetting.enable = true;
+		};
+	};
 
   # Timezone
   time.timeZone = "Europe/Warsaw";
@@ -63,6 +71,7 @@
 	# Services
 	services = {
 		displayManager.ly.enable = true;
+		xserver.videoDrivers = [ "nvidia" ];
 		udisks2.enable = true;
 		gvfs.enable = true;
 		printing.enable = true;
@@ -156,7 +165,6 @@
 
 	# Packages
   environment.systemPackages = with pkgs; [
-		acpilight
 		brightnessctl
 		btop
 		calibre
