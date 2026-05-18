@@ -12,6 +12,7 @@
 
   nix = {
     settings = {
+			warn-dirty = false;
       experimental-features = [ "nix-command" "flakes" ];
     };
     gc = {
@@ -63,11 +64,15 @@
 	services = {
 		displayManager.ly.enable = true;
 		udisks2.enable = true;
+		gvfs.enable = true;
 		printing.enable = true;
 		libinput.enable = true;
 		pipewire = {
 			enable = true;
 			pulse.enable = true;
+			alsa.enable = true;
+			alsa.support32Bit = true;
+			wireplumber.enable = true;
 		};
 		syncthing = {
 			enable = true;
@@ -82,22 +87,45 @@
 			cantarell-fonts
       nerd-fonts.jetbrains-mono
     ];
-		fontconfig = {
+  };
+
+	# XDG Portals
+  xdg = {
+		portal = {
 			enable = true;
-			defaultFonts = {
-				monospace = ["JetBrainsMono NF"];
-				serif = ["JetBrainsMono NF"];
-				sansSerif = ["Atkinson Hyperlegible"];
+			wlr.enable = true;
+			config.common.default = "*";
+			extraPortals = [pkgs.xdg-desktop-portal-gtk];
+		};
+		mime = {
+			enable = true;
+			defaultApplications = {
+				"text/html" = "firefox.desktop";
+				"x-scheme-handler/http" = "firefox.desktop";
+				"x-scheme-handler/https" = "firefox.desktop";
+				"x-scheme-handler/about" = "firefox.desktop";
+				"x-scheme-handler/unknown" = "firefox.desktop";
 			};
 		};
   };
 
-	# XDG Portals
-  xdg.portal = {
-    enable = true;
-    wlr.enable = true;
-    config.common.default = "*";
-    extraPortals = [pkgs.xdg-desktop-portal-gtk];
+	# Polkit
+	security.polkit.enable = true;
+
+  systemd = {
+    user.services.polkit-gnome-authentication-agent-1 = {
+      description = "polkit-gnome-authentication-agent-1";
+      wantedBy = ["graphical-session.target"];
+      wants = ["graphical-session.target"];
+      after = ["graphical-session.target"];
+      serviceConfig = {
+        Type = "simple";
+        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+        Restart = "on-failure";
+        RestartSec = 1;
+        TimeoutStopSec = 10;
+      };
+    };
   };
 
 	# Programs
@@ -107,6 +135,21 @@
 			enable = true;
 			extraCompatPackages = with pkgs; [
 				proton-ge-bin
+			];
+		};
+		dconf = {
+			enable = true;
+			profiles.user.databases = [
+				{
+					settings."org/gnome/desktop/interface" = {
+						gtk-theme = "Nordic-darker";
+						icon-theme = "Papirus-Dark";
+						cursor-theme-name = "capitaine-cursors-white";
+						font-name = "Atkinson Hyperlegible 11";
+						document-font-name = "Atkinson Hyperlegible 11";
+						monospace-font-name = "JetBrainsMono Nerd Font 11";
+					};
+				}
 			];
 		};
 	};
@@ -135,12 +178,12 @@
 		git
 		gh
 		grim
-		gvfs
 		harper
 		heroic
 		hypridle
 		hyprlock
 		imagemagick
+		killall
 		libnotify
 		lsp-plugins
 		mpv
