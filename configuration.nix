@@ -38,6 +38,10 @@
 		kernelParams = [
 			"acpi_backlight=native"
 		];
+		initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+		extraModprobeConfig = ''
+		options nvidia_drm modeset=1
+		'';
 	};
 
   # Hardware
@@ -173,68 +177,72 @@
 	};
 
 	# Packages
-  environment.systemPackages = with pkgs; [
-		brightnessctl
-		btop
-		calibre
-		capitaine-cursors
-		clamav
-		cliphist
-		dunst
-		easyeffects
-		egl-wayland
-		emacs
-		fastfetch
-		fd
-		feh
-		ferdium
-		file-roller
-		firefox
-		fzf
-		ghostty
-		git
-		gh
-		grim
-		harper
-		heroic
-		hypridle
-		hyprlock
-		imagemagick
-		killall
-		libnotify
-		lsp-plugins
-		mpv
-		neovim
-		networkmanagerapplet
-		nexusmods-app
-		nordic
-		nwg-look
-		papirus-icon-theme
-		pcmanfm
-		polkit
-		polkit_gnome
-		protontricks
-		qbittorrent
-		rawtherapee
-		ripgrep
-		rofi
-		stow
-		swaybg
-		syncthing
-		trash-cli
-		vial
-		waves
-		waybar
-		wget
-		wine-staging
-		xdg-utils
-		yazi
-		yt-dlp
-		zoxide
-  ];
+  environment = {
+		sessionVariables = {
+			NIXOS_OZONE_WL = "1";
+		};
+		systemPackages = with pkgs; [
+			brightnessctl
+			btop
+			calibre
+			capitaine-cursors
+			clamav
+			cliphist
+			dunst
+			easyeffects
+			egl-wayland
+			emacs
+			fastfetch
+			fd
+			feh
+			ferdium
+			file-roller
+			firefox
+			fzf
+			git
+			gh
+			grim
+			harper
+			heroic
+			hypridle
+			hyprlock
+			imagemagick
+			killall
+			libnotify
+			lsp-plugins
+			mpv
+			neovim
+			networkmanagerapplet
+			nexusmods-app
+			nordic
+			nwg-look
+			papirus-icon-theme
+			pcmanfm
+			polkit
+			polkit_gnome
+			protontricks
+			qbittorrent
+			rawtherapee
+			ripgrep
+			rofi
+			stow
+			swaybg
+			syncthing
+			trash-cli
+			vial
+			waves
+			waybar
+			wezterm
+			wget
+			wine-staging
+			xdg-utils
+			yazi
+			yt-dlp
+			zoxide
+		];
+	};
 
 	# DO NOT CHANGE
   system.stateVersion = "25.11";
 
 }
-
