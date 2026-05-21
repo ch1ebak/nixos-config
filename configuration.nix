@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system. Help is available in the configuration.nix(5) man page, on
-# https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
 { config, lib, pkgs, ... }:
 
 {
@@ -75,11 +71,13 @@
 	# Services
 	services = {
 		displayManager.ly.enable = true;
-		xserver.videoDrivers = [ "nvidia" ];
 		udisks2.enable = true;
 		gvfs.enable = true;
 		printing.enable = true;
 		libinput.enable = true;
+		xserver = {
+			videoDrivers = [ "nvidia" ];
+		};
 		udev = {
 			packages = with pkgs; [
 				vial
@@ -99,6 +97,8 @@
 		syncthing = {
 			enable = true;
 			openDefaultPorts = true;
+			user = "karna";
+			configDir = "/home/karna/.config/syncthing";
 		};
 	};
 
@@ -167,9 +167,9 @@
 						gtk-theme = "Nordic-darker";
 						icon-theme = "Papirus-Dark";
 						cursor-theme-name = "capitaine-cursors-white";
-						font-name = "Atkinson Hyperlegible 11";
-						document-font-name = "Atkinson Hyperlegible 11";
-						monospace-font-name = "JetBrainsMono Nerd Font 11";
+						font-name = "Atkinson Hyperlegible 10";
+						document-font-name = "Atkinson Hyperlegible 10";
+						monospace-font-name = "JetBrainsMono Nerd Font 10";
 					};
 				}
 			];
@@ -198,6 +198,7 @@
 			ferdium
 			file-roller
 			firefox
+			floorp-bin
 			fzf
 			git
 			gh
@@ -215,7 +216,7 @@
 			networkmanagerapplet
 			nexusmods-app
 			nordic
-			nwg-look
+			nvtopPackages.nvidia
 			papirus-icon-theme
 			pcmanfm
 			polkit
@@ -229,6 +230,8 @@
 			swaybg
 			syncthing
 			trash-cli
+      unrar
+      unzip
 			vial
 			waves
 			waybar
