@@ -47,6 +47,12 @@
 		nvidia = {
 			open = true;
 			modesetting.enable = true;
+			prime = {
+				offload.enable = true;
+				offload.enableOffloadCmd = true;
+				intelBusId = "PCI:0@0:2:0";
+				nvidiaBusId = "PCI:1@0:0:0";
+			};
 		};
 	};
 
@@ -76,7 +82,10 @@
 		printing.enable = true;
 		libinput.enable = true;
 		xserver = {
-			videoDrivers = [ "nvidia" ];
+			videoDrivers = [
+				"modesetting"
+			 	"nvidia"
+			];
 		};
 		udev = {
 			packages = with pkgs; [
