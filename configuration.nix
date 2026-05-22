@@ -33,6 +33,7 @@
 		};
 		kernelParams = [
 			"acpi_backlight=native"
+			"i915.enable_dpcd_backlight=1"
 		];
 		initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
 		extraModprobeConfig = ''
@@ -226,6 +227,7 @@
 			nexusmods-app
 			nordic
 			nvtopPackages.nvidia
+			pandoc
 			papirus-icon-theme
 			pcmanfm
 			polkit
