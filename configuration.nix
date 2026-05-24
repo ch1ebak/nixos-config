@@ -21,7 +21,6 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
-			permittedInsecurePackages = ["nexusmods-app-0.21.1"];
     };
   };
 
@@ -117,6 +116,7 @@
     packages = with pkgs; [
       atkinson-hyperlegible
 			cantarell-fonts
+			noto-fonts
       nerd-fonts.jetbrains-mono
     ];
   };
@@ -125,9 +125,15 @@
   xdg = {
 		portal = {
 			enable = true;
-			wlr.enable = true;
-			config.common.default = "*";
-			extraPortals = [pkgs.xdg-desktop-portal-gtk];
+			extraPortals = [
+				pkgs.xdg-desktop-portal-gtk
+				pkgs.xdg-desktop-portal-gnome
+				pkgs.xdg-desktop-portal-wlr
+			];
+			config = {
+				common.default = "gtk";
+			};
+			xdgOpenUsePortal = false;
 		};
 		mime = {
 			enable = true;
@@ -189,26 +195,30 @@
 	# Packages
   environment = {
 		sessionVariables = {
+			# fixes nvidia in btop
+			LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib btop";
 			NIXOS_OZONE_WL = "1";
+			XCURSOR_SIZE = "15";
+			XCURSOR_THEME = "capitaine-cursors-light";
 		};
 		systemPackages = with pkgs; [
 			brightnessctl
 			btop
 			calibre
 			capitaine-cursors
+			chromium
 			clamav
 			cliphist
 			dunst
 			easyeffects
 			egl-wayland
-			emacs
+			emacs-gtk
 			fastfetch
 			fd
 			feh
 			ferdium
 			file-roller
 			firefox
-			floorp-bin
 			fzf
 			git
 			gh
@@ -221,12 +231,13 @@
 			killall
 			libnotify
 			lsp-plugins
+			mpd
+			mpdscribble
 			mpv
 			neovim
 			networkmanagerapplet
-			nexusmods-app
 			nordic
-			nvtopPackages.nvidia
+			nwg-look
 			pandoc
 			papirus-icon-theme
 			pcmanfm
@@ -236,6 +247,7 @@
 			qbittorrent
 			rawtherapee
 			ripgrep
+			rmpc
 			rofi
 			stow
 			swaybg
@@ -244,7 +256,6 @@
       unrar
       unzip
 			vial
-			waves
 			waybar
 			wezterm
 			wget
