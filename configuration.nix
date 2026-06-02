@@ -9,6 +9,7 @@
   nix = {
     settings = {
 			warn-dirty = false;
+			auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
     };
     gc = {
@@ -21,6 +22,7 @@
   nixpkgs = {
     config = {
       allowUnfree = true;
+			permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
     };
   };
 
@@ -43,7 +45,10 @@
   # Hardware
 	hardware = {
 		acpilight.enable = true;
-		graphics.enable = true;
+		graphics = {
+			enable = true;
+			enable32Bit = true;
+		};
 		nvidia = {
 			open = true;
 			modesetting.enable = true;
@@ -81,6 +86,7 @@
 		gvfs.enable = true;
 		printing.enable = true;
 		libinput.enable = true;
+		flatpak.enable = true;
 		xserver = {
 			videoDrivers = [
 				"modesetting"
@@ -125,25 +131,13 @@
   xdg = {
 		portal = {
 			enable = true;
+			config.common.default = "*";
 			extraPortals = [
 				pkgs.xdg-desktop-portal-gtk
-				pkgs.xdg-desktop-portal-gnome
 				pkgs.xdg-desktop-portal-wlr
+				pkgs.xdg-desktop-portal-gnome
 			];
-			config = {
-				common.default = "gtk";
-			};
 			xdgOpenUsePortal = false;
-		};
-		mime = {
-			enable = true;
-			defaultApplications = {
-				"text/html" = "firefox.desktop";
-				"x-scheme-handler/http" = "firefox.desktop";
-				"x-scheme-handler/https" = "firefox.desktop";
-				"x-scheme-handler/about" = "firefox.desktop";
-				"x-scheme-handler/unknown" = "firefox.desktop";
-			};
 		};
   };
 
@@ -197,17 +191,20 @@
 		sessionVariables = {
 			# fixes nvidia in btop
 			LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib btop";
+			# wayland
 			NIXOS_OZONE_WL = "1";
-			XCURSOR_SIZE = "15";
-			XCURSOR_THEME = "capitaine-cursors-light";
+			WLR_NO_HARDWARE_CURSORS = 1;
+			MOZ_ENABLE_WAYLAND = 1;
+			GDK_BACKEND = "wayland,x11";
+			QT_QPA_PLATFORM = "wayland;xcb";
+			ELECTRON_OZONE_PLATFORM_HINT = "auto";
+			SDL_VIDEODRIVER = "wayland,x11";
 		};
 		systemPackages = with pkgs; [
 			brightnessctl
 			btop
 			calibre
 			capitaine-cursors
-			chromium
-			clamav
 			cliphist
 			dunst
 			easyeffects
@@ -218,7 +215,6 @@
 			feh
 			ferdium
 			file-roller
-			firefox
 			fzf
 			git
 			gh
@@ -231,11 +227,10 @@
 			killall
 			libnotify
 			lsp-plugins
-			mpd
-			mpdscribble
 			mpv
 			neovim
 			networkmanagerapplet
+			nexusmods-app-unfree
 			nordic
 			nwg-look
 			pandoc
@@ -244,18 +239,15 @@
 			polkit
 			polkit_gnome
 			protontricks
-			qbittorrent
 			rawtherapee
 			ripgrep
-			rmpc
 			rofi
 			stow
 			swaybg
 			syncthing
 			trash-cli
-      unrar
-      unzip
 			vial
+			waves
 			waybar
 			wezterm
 			wget
