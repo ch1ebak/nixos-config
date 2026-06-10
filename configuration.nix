@@ -227,6 +227,8 @@
 			killall
 			libnotify
 			lsp-plugins
+      mpd
+      mpdscribble
 			mpv
 			neovim
 			networkmanagerapplet
@@ -241,13 +243,13 @@
 			protontricks
 			rawtherapee
 			ripgrep
+      rmpc
 			rofi
 			stow
 			swaybg
 			syncthing
 			trash-cli
 			vial
-			waves
 			waybar
 			wezterm
 			wget
