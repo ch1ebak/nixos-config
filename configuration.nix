@@ -15,7 +15,7 @@
     gc = {
       automatic = true;
       dates = "weekly";
-      options = "--delete-older-than 15d";
+      options = "--delete-older-than 7d";
     };
   };
   
@@ -29,7 +29,10 @@
 	boot = {
 		kernelPackages = pkgs.linuxPackages_latest;
 		loader = {
-			systemd-boot.enable = true;
+			systemd-boot = {
+        enable = true;
+        configurationLimit = 5;
+      };
 			efi.canTouchEfiVariables = true;
 		};
 		kernelParams = [
@@ -84,7 +87,6 @@
 		displayManager.ly.enable = true;
 		udisks2.enable = true;
 		gvfs.enable = true;
-		printing.enable = true;
 		libinput.enable = true;
 		flatpak.enable = true;
 		xserver = {
@@ -128,17 +130,16 @@
   };
 
 	# XDG Portals
-  xdg = {
-		portal = {
-			enable = true;
-			config.common.default = "*";
-			extraPortals = [
-				pkgs.xdg-desktop-portal-gtk
-				pkgs.xdg-desktop-portal-wlr
-				pkgs.xdg-desktop-portal-gnome
-			];
-			xdgOpenUsePortal = false;
-		};
+  xdg.portal = {
+    enable = true;
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-wlr
+    ];
+    config = {
+      common.default = "gtk";
+    };
+    xdgOpenUsePortal = false;
   };
 
 	# Polkit
@@ -189,16 +190,12 @@
 	# Packages
   environment = {
 		sessionVariables = {
-			# fixes nvidia in btop
-			LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib btop";
-			# wayland
-			NIXOS_OZONE_WL = "1";
-			WLR_NO_HARDWARE_CURSORS = 1;
-			MOZ_ENABLE_WAYLAND = 1;
-			GDK_BACKEND = "wayland,x11";
-			QT_QPA_PLATFORM = "wayland;xcb";
-			ELECTRON_OZONE_PLATFORM_HINT = "auto";
-			SDL_VIDEODRIVER = "wayland,x11";
+			LD_LIBRARY_PATH="/run/opengl-driver/lib:/run/opengl-driver-32/lib btop"; # fixes nvidia in btop
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+      # nvidia
+      LIBVA_DRIVER_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
 		};
 		systemPackages = with pkgs; [
 			brightnessctl
