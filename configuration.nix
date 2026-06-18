@@ -232,7 +232,6 @@
 			nexusmods-app-unfree
 			nordic
 			nwg-look
-			pandoc
 			papirus-icon-theme
 			pcmanfm
 			polkit
