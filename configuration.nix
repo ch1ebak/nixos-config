@@ -31,7 +31,7 @@
 		loader = {
 			systemd-boot = {
         enable = true;
-        configurationLimit = 5;
+        configurationLimit = 10;
       };
 			efi.canTouchEfiVariables = true;
 		};
@@ -89,9 +89,10 @@
 		gvfs.enable = true;
 		libinput.enable = true;
 		flatpak.enable = true;
+    picom.enable = true;
 		xserver = {
 			videoDrivers = [
-				"modesetting"
+        "modesetting"
 			 	"nvidia"
 			];
 		};
@@ -206,7 +207,7 @@
 			dunst
 			easyeffects
 			egl-wayland
-			emacs-gtk
+			emacs
 			fastfetch
 			fd
 			feh
@@ -232,6 +233,7 @@
 			nexusmods-app-unfree
 			nordic
 			nwg-look
+			pandoc
 			papirus-icon-theme
 			pcmanfm
 			polkit
