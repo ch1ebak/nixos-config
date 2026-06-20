@@ -211,7 +211,6 @@
 			fastfetch
 			fd
 			feh
-			ferdium
 			file-roller
 			fzf
 			git
