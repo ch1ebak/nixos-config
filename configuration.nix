@@ -87,12 +87,11 @@
 		displayManager.ly.enable = true;
 		udisks2.enable = true;
 		gvfs.enable = true;
+		fstrim.enable = true;
 		libinput.enable = true;
 		flatpak.enable = true;
-    picom.enable = true;
 		xserver = {
 			videoDrivers = [
-        "modesetting"
 			 	"nvidia"
 			];
 		};
@@ -207,10 +206,11 @@
 			dunst
 			easyeffects
 			egl-wayland
-			emacs
+			emacs-gtk
 			fastfetch
 			fd
 			feh
+			ferdium
 			file-roller
 			fzf
 			git
@@ -227,7 +227,6 @@
       mpd
       mpdscribble
 			mpv
-			neovim
 			networkmanagerapplet
 			nexusmods-app-unfree
 			nordic
