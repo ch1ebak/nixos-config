@@ -164,6 +164,7 @@
 	# Programs
   programs = {
 		mango.enable = true;
+		gamemode.enable = true;
 		steam = {
 			enable = true;
 			extraCompatPackages = with pkgs; [
