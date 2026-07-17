@@ -225,8 +225,8 @@
 			ferdium
 			file-roller
 			fzf
-			git
 			gh
+			git
 			grim
 			harper
 			heroic
@@ -247,6 +247,7 @@
 			polkit
 			polkit_gnome
 			protontricks
+			qbittorrent
 			rawtherapee
 			ripgrep
 			rofi
