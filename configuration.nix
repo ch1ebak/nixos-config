@@ -236,6 +236,7 @@
 			killall
 			libnotify
 			lsp-plugins
+			lutris
 			mpv
 			networkmanagerapplet
 			nexusmods-app-unfree
@@ -260,7 +261,7 @@
 			waybar
 			wezterm
 			wget
-			wine-staging
+			wineWow64Packages.stable
 			xdg-utils
 			yazi
 			yt-dlp
