@@ -189,7 +189,7 @@
 					settings."org/gnome/desktop/interface" = {
 						gtk-theme = "Nordic-darker";
 						icon-theme = "Papirus-Dark";
-						cursor-theme-name = "capitaine-cursors-white";
+						cursor-theme-name = "capitaine-cursors-white 15";
 						font-name = "Atkinson Hyperlegible 10";
 						document-font-name = "Atkinson Hyperlegible 10";
 						monospace-font-name = "JetBrainsMono Nerd Font 10";
@@ -215,6 +215,7 @@
 			calibre
 			capitaine-cursors
 			cliphist
+			devenv
 			dunst
 			easyeffects
 			egl-wayland
@@ -236,11 +237,9 @@
 			killall
 			libnotify
 			lsp-plugins
-			lutris
 			mpv
 			networkmanagerapplet
 			nexusmods-app-unfree
-			nordic
 			nwg-look
 			pandoc
 			papirus-icon-theme
