@@ -151,7 +151,7 @@
       cantarell-fonts
       noto-fonts
       nerd-fonts.jetbrains-mono
-			cascadia-code
+      cascadia-code
     ];
   };
 
@@ -243,14 +243,15 @@
       dunst
       easyeffects
       egl-wayland
-      emacs-gtk
       fastfetch
       fd
       feh
       ferdium
       file-roller
+			firefox
       fzf
       gh
+      ghostty
       git
       grim
       harper
@@ -262,6 +263,7 @@
       libnotify
       lsp-plugins
       mpv
+			neovim
       networkmanagerapplet
       nexusmods-app-unfree
       nwg-look
@@ -282,7 +284,6 @@
       vial
       waves
       waybar
-      wezterm
       wget
       wineWow64Packages.stable
       xdg-utils
