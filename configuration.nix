@@ -71,6 +71,7 @@
   # Hardware
   hardware = {
     acpilight.enable = true;
+    bluetooth.enable = true;
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -104,22 +105,25 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "libvirtd"
-    ]; # Enable ‘sudo’ for the user.
+      "tty"
+      "dialout"
+    ];
   };
 
   # Services
   services = {
     displayManager.ly.enable = true;
-    udisks2.enable = true;
-    gvfs.enable = true;
-    fstrim.enable = true;
-    libinput.enable = true;
     flatpak.enable = true;
+    fstrim.enable = true;
+    gvfs.enable = true;
+    libinput.enable = true;
+    power-profiles-daemon.enable = true;
+    udisks2.enable = true;
+    upower.enable = true;
     xserver = {
-      videoDrivers = [
-        "nvidia"
-      ];
+      enable = true;
+      windowManager.oxwm.enable = true;
+      videoDrivers = [ "nvidia" ];
     };
     udev = {
       packages = with pkgs; [
@@ -149,9 +153,8 @@
     packages = with pkgs; [
       atkinson-hyperlegible
       cantarell-fonts
-      noto-fonts
       nerd-fonts.jetbrains-mono
-      cascadia-code
+      noto-fonts
     ];
   };
 
@@ -187,19 +190,10 @@
     };
   };
 
-  virtualisation.libvirtd = {
-    enable = true;
-    qemu.vhostUserPackages = with pkgs; [
-      virtiofsd
-      dnsmasq
-    ];
-  };
-
   # Programs
   programs = {
-    mango.enable = true;
-    virt-manager.enable = true;
     gamemode.enable = true;
+    mango.enable = true;
     steam = {
       enable = true;
       extraCompatPackages = with pkgs; [
@@ -234,13 +228,13 @@
       __GLX_VENDOR_LIBRARY_NAME = "nvidia";
     };
     systemPackages = with pkgs; [
+      adwaita-icon-theme
       brightnessctl
       btop
       calibre
       capitaine-cursors
       cliphist
       devenv
-      dunst
       easyeffects
       egl-wayland
       fastfetch
@@ -248,26 +242,22 @@
       feh
       ferdium
       file-roller
-			firefox
       fzf
       gh
       ghostty
       git
       grim
-      harper
-      heroic
-      hypridle
-      hyprlock
       imagemagick
       killall
       libnotify
       lsp-plugins
+      lutris
       mpv
 			neovim
       networkmanagerapplet
       nexusmods-app-unfree
+      noctalia
       nwg-look
-      pandoc
       papirus-icon-theme
       pcmanfm
       polkit
@@ -278,7 +268,6 @@
       ripgrep
       rofi
       stow
-      swaybg
       syncthing
       trash-cli
       vial
@@ -289,6 +278,7 @@
       xdg-utils
       yazi
       yt-dlp
+      zmk-studio
       zoxide
     ];
   };
