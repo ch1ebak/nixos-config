@@ -19,30 +19,13 @@
 {
   imports = [
     /etc/nixos/hardware-configuration.nix
+    /home/karna/.nixos-btw/modules/packages.nix
+    /home/karna/.nixos-btw/modules/wayland.nix
+    /home/karna/.nixos-btw/modules/gaming.nix
+    # /home/karna/.nixos-btw/modules/xorg.nix
+    # /home/karna/.nixos-btw/modules/dev.nix
+    # /home/karna/.nixos-btw/modules/vm.nix
   ];
-
-  nix = {
-    settings = {
-      warn-dirty = false;
-      auto-optimise-store = true;
-      experimental-features = [
-        "nix-command"
-        "flakes"
-      ];
-    };
-    gc = {
-      automatic = true;
-      dates = "weekly";
-      options = "--delete-older-than 7d";
-    };
-  };
-
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      permittedInsecurePackages = [ "nexusmods-app-unfree-0.21.1" ];
-    };
-  };
 
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
@@ -68,10 +51,23 @@
       		'';
   };
 
-  # Hardware
+  environment = {
+    sessionVariables = {
+      LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib btop"; # fixes nvidia in btop
+      QT_QPA_PLATFORMTHEME = "qt6ct";
+      # nvidia
+      LIBVA_DRIVER_NAME = "nvidia";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    };
+  };
+
   hardware = {
     acpilight.enable = true;
-    bluetooth.enable = true;
+    bluetooth = {
+      enable = true;
+      powerOnBoot = true;
+    };
     graphics = {
       enable = true;
       enable32Bit = true;
@@ -88,198 +84,44 @@
     };
   };
 
-  # Timezone
-  time.timeZone = "Europe/Warsaw";
-
-  # Locale
   i18n.defaultLocale = "pl_PL.UTF-8";
 
-  # Network
   networking = {
     hostName = "nixos-btw";
     networkmanager.enable = true;
   };
 
-  # User
+  nix = {
+    settings = {
+      warn-dirty = false;
+      auto-optimise-store = true;
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
+    };
+    gc = {
+      automatic = true;
+      dates = "weekly";
+      options = "--delete-older-than 7d";
+    };
+  };
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+  };
+
+  time.timeZone = "Europe/Warsaw";
+
   users.users.karna = {
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "tty"
+      "libvirtd"
       "dialout"
-    ];
-  };
-
-  # Services
-  services = {
-    displayManager.ly.enable = true;
-    flatpak.enable = true;
-    fstrim.enable = true;
-    gvfs.enable = true;
-    libinput.enable = true;
-    power-profiles-daemon.enable = true;
-    udisks2.enable = true;
-    upower.enable = true;
-    xserver = {
-      enable = true;
-      windowManager.oxwm.enable = true;
-      videoDrivers = [ "nvidia" ];
-    };
-    udev = {
-      packages = with pkgs; [
-        vial
-      ];
-      extraRules = ''
-        			ENV{ID_VENDOR_ID}=="046d", ENV{ID_MODEL_ID}=="0825", ENV{PULSE_IGNORE}="1"
-        			'';
-    };
-    pipewire = {
-      enable = true;
-      pulse.enable = true;
-      alsa.enable = true;
-      alsa.support32Bit = true;
-      wireplumber.enable = true;
-    };
-    syncthing = {
-      enable = true;
-      openDefaultPorts = true;
-      user = "karna";
-      configDir = "/home/karna/.config/syncthing";
-    };
-  };
-
-  # Fonts
-  fonts = {
-    packages = with pkgs; [
-      atkinson-hyperlegible
-      cantarell-fonts
-      nerd-fonts.jetbrains-mono
-      noto-fonts
-    ];
-  };
-
-  # XDG Portals
-  xdg.portal = {
-    enable = true;
-    extraPortals = [
-      pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-wlr
-    ];
-    config = {
-      common.default = "gtk";
-    };
-    xdgOpenUsePortal = false;
-  };
-
-  # Polkit
-  security.polkit.enable = true;
-
-  systemd = {
-    user.services.polkit-gnome-authentication-agent-1 = {
-      description = "polkit-gnome-authentication-agent-1";
-      wantedBy = [ "graphical-session.target" ];
-      wants = [ "graphical-session.target" ];
-      after = [ "graphical-session.target" ];
-      serviceConfig = {
-        Type = "simple";
-        ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
-        Restart = "on-failure";
-        RestartSec = 1;
-        TimeoutStopSec = 10;
-      };
-    };
-  };
-
-  # Programs
-  programs = {
-    gamemode.enable = true;
-    mango.enable = true;
-    steam = {
-      enable = true;
-      extraCompatPackages = with pkgs; [
-        proton-ge-bin
-      ];
-    };
-    dconf = {
-      enable = true;
-      profiles.user.databases = [
-        {
-          settings."org/gnome/desktop/interface" = {
-            gtk-theme = "Nordic-darker";
-            icon-theme = "Papirus-Dark";
-            cursor-theme-name = "capitaine-cursors-white 15";
-            font-name = "Atkinson Hyperlegible 10";
-            document-font-name = "Atkinson Hyperlegible 10";
-            monospace-font-name = "JetBrainsMono Nerd Font 10";
-          };
-        }
-      ];
-    };
-  };
-
-  # Packages
-  environment = {
-    sessionVariables = {
-      LD_LIBRARY_PATH = "/run/opengl-driver/lib:/run/opengl-driver-32/lib btop"; # fixes nvidia in btop
-      QT_QPA_PLATFORMTHEME = "qt6ct";
-      # nvidia
-      LIBVA_DRIVER_NAME = "nvidia";
-      GBM_BACKEND = "nvidia-drm";
-      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    };
-    systemPackages = with pkgs; [
-      adwaita-icon-theme
-      brightnessctl
-      btop
-      calibre
-      capitaine-cursors
-      cliphist
-      devenv
-      easyeffects
-      egl-wayland
-      fastfetch
-      fd
-      feh
-      ferdium
-      file-roller
-      fzf
-      gh
-      ghostty
-      git
-      grim
-      imagemagick
-      killall
-      libnotify
-      lsp-plugins
-      lutris
-      mpv
-			neovim
-      networkmanagerapplet
-      nexusmods-app-unfree
-      noctalia
-      nwg-look
-      papirus-icon-theme
-      pcmanfm
-      polkit
-      polkit_gnome
-      protontricks
-      qbittorrent
-      rawtherapee
-      ripgrep
-      rofi
-      stow
-      syncthing
-      trash-cli
-      vial
-      waves
-      waybar
-      wget
-      wineWow64Packages.stable
-      xdg-utils
-      yazi
-      yt-dlp
-      zmk-studio
-      zoxide
+      "tty"
     ];
   };
 
