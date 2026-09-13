@@ -13,8 +13,8 @@
       profiles.user.databases = [
         {
           settings."org/gnome/desktop/interface" = {
-            gtk-theme = "Nordic-darker";
-            icon-theme = "Papirus-Dark";
+            gtk-theme = "adw-gtk3-dark";
+            icon-theme = "Adwaita";
             cursor-theme-name = "capitaine-cursors-white 15";
             font-name = "Atkinson Hyperlegible 10";
             document-font-name = "Atkinson Hyperlegible 10";
@@ -60,13 +60,13 @@
 
   environment = {
     systemPackages = with pkgs; [
-      emacs-gtk
       adwaita-icon-theme
       brave-origin
       brightnessctl
       btop
       calibre
       capitaine-cursors
+      ddcutil
       easyeffects
       fastfetch
       fd
@@ -74,16 +74,16 @@
       ferdium
       file-roller
       fzf
-      gh
       ghostty
-      git
       killall
       libnotify
       lsp-plugins
+      mpd
+      mpdscribble
       mpv
       neovim
       nwg-look
-      papirus-icon-theme
+      obsidian
       pcmanfm
       polkit
       polkit_gnome
@@ -91,12 +91,11 @@
       qbittorrent
       rawtherapee
       ripgrep
+      rmpc
       rofi
       stow
       syncthing
       trash-cli
-      vial
-      waves
       wget
       wineWow64Packages.stable
       xdg-utils

@@ -22,8 +22,8 @@
     /home/karna/.nixos-btw/modules/packages.nix
     /home/karna/.nixos-btw/modules/wayland.nix
     /home/karna/.nixos-btw/modules/gaming.nix
+    /home/karna/.nixos-btw/modules/dev.nix
     # /home/karna/.nixos-btw/modules/xorg.nix
-    # /home/karna/.nixos-btw/modules/dev.nix
     # /home/karna/.nixos-btw/modules/vm.nix
   ];
 
@@ -64,6 +64,7 @@
 
   hardware = {
     acpilight.enable = true;
+    i2c.enable = true;
     bluetooth = {
       enable = true;
       powerOnBoot = true;

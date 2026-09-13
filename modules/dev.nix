@@ -1,4 +1,9 @@
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
 
@@ -8,6 +13,7 @@
       bash-language-server
       beautysh
       ccls
+      gh
       git
       harper
       jq
@@ -22,4 +28,3 @@
   };
 
 }
-
