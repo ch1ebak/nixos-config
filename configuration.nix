@@ -23,6 +23,7 @@
     /home/karna/.nixos-btw/modules/wayland.nix
     /home/karna/.nixos-btw/modules/gaming.nix
     /home/karna/.nixos-btw/modules/dev.nix
+    # /home/karna/.nixos-btw/modules/gnome.nix
     # /home/karna/.nixos-btw/modules/clamav.nix
     # /home/karna/.nixos-btw/modules/xorg.nix
     # /home/karna/.nixos-btw/modules/vm.nix

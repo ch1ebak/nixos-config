@@ -7,14 +7,11 @@
 
 {
 
-  programs.mango.enable = true;
+  services.desktopManager.gnome.enable = true;
 
   environment = {
     systemPackages = with pkgs; [
-      cliphist
-      egl-wayland
-      grim
-      noctalia
+      gnome-tweaks
     ];
   };
 
