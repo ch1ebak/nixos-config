@@ -13,7 +13,8 @@
       bash-language-server
       beautysh
       ccls
-      gh
+      # gh
+      github-cli
       git
       harper
       jq

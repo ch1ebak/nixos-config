@@ -96,6 +96,7 @@
       stow
       syncthing
       trash-cli
+      unrar
       wget
       wineWow64Packages.stable
       xdg-utils
