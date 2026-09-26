@@ -18,15 +18,15 @@
 
 {
   imports = [
-    /etc/nixos/hardware-configuration.nix
-    /home/karna/.nixos-btw/modules/packages.nix
-    /home/karna/.nixos-btw/modules/wayland.nix
-    /home/karna/.nixos-btw/modules/gaming.nix
-    /home/karna/.nixos-btw/modules/dev.nix
-    # /home/karna/.nixos-btw/modules/gnome.nix
-    # /home/karna/.nixos-btw/modules/clamav.nix
-    # /home/karna/.nixos-btw/modules/xorg.nix
-    # /home/karna/.nixos-btw/modules/vm.nix
+    ./hardware-configuration.nix
+    # ./modules/clamav.nix
+    ./modules/dev.nix
+    ./modules/gaming.nix
+    ./modules/gnome.nix
+    ./modules/packages.nix
+    # ./modules/vm.nix
+    ./modules/wayland.nix
+    # ./modules/xorg.nix
   ];
 
   boot = {
