@@ -19,14 +19,10 @@
 {
   imports = [
     ./hardware-configuration.nix
-    # ./modules/clamav.nix
     ./modules/dev.nix
     ./modules/gaming.nix
-    ./modules/gnome.nix
     ./modules/packages.nix
-    # ./modules/vm.nix
     ./modules/wayland.nix
-    # ./modules/xorg.nix
   ];
 
   boot = {

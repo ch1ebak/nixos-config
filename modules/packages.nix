@@ -74,7 +74,6 @@
       ferdium
       file-roller
       fzf
-      ghostty
       killall
       libnotify
       lsp-plugins
@@ -96,7 +95,7 @@
       stow
       syncthing
       trash-cli
-      unrar
+      wezterm
       wget
       wineWow64Packages.stable
       xdg-utils
