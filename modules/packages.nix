@@ -74,6 +74,8 @@
       ferdium
       file-roller
       fzf
+      git
+      github-desktop
       killall
       libnotify
       lsp-plugins
@@ -82,7 +84,6 @@
       mpv
       neovim
       nwg-look
-      obsidian
       pcmanfm
       polkit
       polkit_gnome

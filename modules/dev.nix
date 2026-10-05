@@ -13,8 +13,6 @@
       bash-language-server
       beautysh
       ccls
-      git
-      github-desktop
       harper
       jq
       jq-lsp
