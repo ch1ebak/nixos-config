@@ -29,6 +29,7 @@
     displayManager.ly.enable = true;
     flatpak.enable = true;
     fstrim.enable = true;
+    gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
     libinput.enable = true;
     power-profiles-daemon.enable = true;
@@ -74,8 +75,10 @@
       ferdium
       file-roller
       fzf
+      ghostty
       git
       github-desktop
+      imagemagick
       killall
       libnotify
       lsp-plugins
@@ -96,7 +99,6 @@
       stow
       syncthing
       trash-cli
-      wezterm
       wget
       wineWow64Packages.stable
       xdg-utils
