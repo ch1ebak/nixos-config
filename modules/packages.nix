@@ -36,14 +36,6 @@
     udisks2.enable = true;
     upower.enable = true;
     xserver.videoDrivers = [ "nvidia" ];
-    udev = {
-      packages = with pkgs; [
-        vial
-      ];
-      extraRules = ''
-        			ENV{ID_VENDOR_ID}=="046d", ENV{ID_MODEL_ID}=="0825", ENV{PULSE_IGNORE}="1"
-        			'';
-    };
     pipewire = {
       enable = true;
       pulse.enable = true;
@@ -69,6 +61,7 @@
       capitaine-cursors
       ddcutil
       easyeffects
+      emacs-gtk
       fastfetch
       fd
       feh
@@ -85,7 +78,6 @@
       mpd
       mpdscribble
       mpv
-      neovim
       nwg-look
       pcmanfm
       polkit

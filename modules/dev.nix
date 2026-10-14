@@ -13,6 +13,8 @@
       bash-language-server
       beautysh
       ccls
+      gcc
+      libgcc
       harper
       jq
       jq-lsp
@@ -22,6 +24,7 @@
       shellcheck
       stylua
       tailwindcss-language-server
+      tree-sitter
     ];
   };
 
