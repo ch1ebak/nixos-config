@@ -14,6 +14,7 @@
       beautysh
       ccls
       gcc
+      gh
       libgcc
       harper
       jq
