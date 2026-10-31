@@ -54,10 +54,8 @@
   environment = {
     systemPackages = with pkgs; [
       adwaita-icon-theme
-      brave-origin
       brightnessctl
       btop
-      calibre
       capitaine-cursors
       ddcutil
       easyeffects
@@ -67,6 +65,7 @@
       feh
       ferdium
       file-roller
+      firefox
       fzf
       ghostty
       git
