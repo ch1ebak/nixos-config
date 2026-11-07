@@ -15,6 +15,7 @@
       egl-wayland
       grim
       noctalia
+      pcmanfm
     ];
   };
 

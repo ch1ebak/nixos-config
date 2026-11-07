@@ -15,7 +15,7 @@
           settings."org/gnome/desktop/interface" = {
             gtk-theme = "adw-gtk3-dark";
             icon-theme = "Adwaita";
-            cursor-theme-name = "capitaine-cursors-white 15";
+            cursor-theme-name = "capitaine-cursors-white 24";
             font-name = "Atkinson Hyperlegible 10";
             document-font-name = "Atkinson Hyperlegible 10";
             monospace-font-name = "JetBrainsMono Nerd Font 10";
@@ -26,8 +26,8 @@
   };
 
   services = {
-    displayManager.ly.enable = true;
-    flatpak.enable = true;
+    # displayManager.ly.enable = true;
+    displayManager.gdm.enable = true;
     fstrim.enable = true;
     gnome.gnome-keyring.enable = true;
     gvfs.enable = true;
@@ -56,8 +56,10 @@
       adwaita-icon-theme
       brightnessctl
       btop
+      calibre
       capitaine-cursors
       ddcutil
+      dopamine
       easyeffects
       emacs-gtk
       fastfetch
@@ -72,24 +74,19 @@
       github-desktop
       imagemagick
       killall
-      libnotify
       lsp-plugins
-      mpd
-      mpdscribble
       mpv
       nwg-look
-      pcmanfm
       polkit
       polkit_gnome
       protontricks
       qbittorrent
-      rawtherapee
       ripgrep
-      rmpc
       rofi
       stow
       syncthing
       trash-cli
+      ungoogled-chromium
       wget
       wineWow64Packages.stable
       xdg-utils

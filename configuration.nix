@@ -21,8 +21,9 @@
     ./hardware-configuration.nix
     ./modules/dev.nix
     ./modules/gaming.nix
+    # ./modules/gnome.nix
+    ./modules/mango.nix
     ./modules/packages.nix
-    ./modules/wayland.nix
   ];
 
   boot = {
@@ -117,7 +118,6 @@
     isNormalUser = true;
     extraGroups = [
       "wheel"
-      "libvirtd"
       "dialout"
       "tty"
     ];
